@@ -1,4 +1,4 @@
-function printPages(start, end) {
+function printPages(start, end, pageTime=100) {
     document.querySelector("style").remove();
     let printContents = "";
     let i = start;
@@ -16,11 +16,10 @@ function printPages(start, end) {
             if (i == end + 1) {
                 document.body.innerHTML = printContents;
                 console.log("Reading...");
-                setTimeout(()=>{
-                    window.print();
-                    location.reload();
-                }
-                , (end - start) * 100);
+                setTimeout(() => {
+                  window.print();
+                  location.reload();
+                }, (end - start) * pageTime);
             }
         }
         , 1000);

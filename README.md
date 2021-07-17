@@ -5,7 +5,7 @@
 College students that have used Perlego before know that downloading EBooks for offline viewing is not easy. This repository contains scripts that help paying users download their EBooks without hassle. 
 
 **For the most basic use case (Less than ~200 pages):** 
-1. Open Ebook in a browser (currently only ones available as PDF). 
+1. Open Ebook in a browser (PDF and ePub supported). 
 1. Go to the page you want to start printing. 
 1. Open Chrome's developer console [via the UI](https://developers.google.com/web/tools/chrome-devtools/open#chrome).
 1. Paste the content of `PerlegoContent.js` into the console and press enter. 
@@ -17,7 +17,7 @@ If you want to download an entire textbook, it is recommended that you download 
 
 Please note that `PerlegoContent.js` does not save the menu(outline) of the pdf, for that you need to use `PerlegoOutline.js` as described below. 
 
-**Procedure for downloading an entire textbook with the menu intact:** 
+**(PDF Only) Procedure for downloading an entire textbook with the menu intact:** 
 1. Download all sections of the Ebook using `PerlegoContent.js`, make sure you name your pdfs `part_1.pdf`, `part_2.pdf`, etc. in the `Downloads` folder. 
 2. Make sure you have `poppler-utils` installed to combine the pdfs, and `fntsample` installed to add the outline. 
 3. Run `PerlegoOutline.js` from the "Table of contents" page of the Ebook (between "Book details" and "Related") in developer console. 
@@ -34,3 +34,5 @@ Please note that `PerlegoContent.js` does not save the menu(outline) of the pdf,
 	# Clean up
 	rm part_*.pdf temp.pdf outline.txt
 	```
+
+*Future: Add support to download ePub books as `.epub` instead of `.pdf`.*

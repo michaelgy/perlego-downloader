@@ -6,12 +6,14 @@ function printPages(start, end, pageTime=100) {
     function downloadPage() {
         setTimeout(()=>{
             let content = document.querySelector(`div[data-chapterid='${i}']`);
+            if (!content || content.querySelector(".pdfplaceholder") != null) {
+                downloadPage();
+                return;
+            }
             if (isPDF)
                 content.scrollIntoView();
-            if (content.querySelector(".pdfplaceholder") == null) {
-                printContents += content.innerHTML + "<div style='page-break-before: always;'></div>";
-                i++;
-            }
+            printContents += content.innerHTML + "<div style='page-break-before: always;'></div>";
+            i++;
             if (i <= end) {
                 if (!isPDF)
                     document.querySelector(`button[data-test-locator='ChevronButton-next-chapter']`).click();
@@ -29,10 +31,10 @@ function printPages(start, end, pageTime=100) {
                     window.print();
                     location.reload();
                 }
-                , (end - start)* pageTime);
+                , (end - start) * pageTime);
             }
         }
-        , 1000);
+        , 100);
     }
     downloadPage();
 }

@@ -5,7 +5,16 @@ function printPages(start, end, pageTime=100) {
     let i = start;
     function downloadPage() {
         setTimeout(()=>{
-            let content = document.querySelector(`div[data-chapterid='${i}']`);
+            let content;
+            
+            for (let j = i; j < i + 10; j++) {
+                content = document.querySelector(`div[data-chapterid='${j}']`)
+                if (content) {
+                    i = j;
+                    break;
+                }
+            }
+
             if (!content || content.querySelector(".pdfplaceholder") != null) {
                 downloadPage();
                 return;
@@ -26,7 +35,7 @@ function printPages(start, end, pageTime=100) {
                     document.body.innerHTML = "<div style='padding:40px;'>" + printContents + "</div>";
                 }
 
-                console.log("Reading...");
+                console.log("Loading...");
                 setTimeout(()=>{
                     window.print();
                     location.reload();
@@ -37,4 +46,7 @@ function printPages(start, end, pageTime=100) {
         , 100);
     }
     downloadPage();
+    return "Reading...";
 }
+
+"Enter printPages(startPage, endPage) to get started! ";

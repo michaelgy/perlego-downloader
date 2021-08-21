@@ -1,3 +1,20 @@
+function loadImages() {
+    document.querySelectorAll("img").forEach((e)=>{
+        const imageName = e.className.split("-");
+
+        if (imageName.length === 2 && imageName[1] === "loader") {
+            document.querySelector(`.${imageName[0]}`)?.remove();
+            e.style["width"] = "100%";
+            e.style["height"] = "100%";
+            e.style["opacity"] = "100%";
+            e.style["max-width"] = "100%";
+            e.style["max-height"] = "100%";
+        }
+
+    }
+    );
+}
+
 function printPages(start, end, pageTime=100) {
     document.querySelector("style").remove();
     const isPDF = document.querySelector(".pdf-content") != undefined;
@@ -6,7 +23,7 @@ function printPages(start, end, pageTime=100) {
     function downloadPage() {
         setTimeout(()=>{
             let content;
-            
+
             for (let j = i; j < i + 10; j++) {
                 content = document.querySelector(`div[data-chapterid='${j}']`)
                 if (content) {
@@ -37,6 +54,8 @@ function printPages(start, end, pageTime=100) {
 
                 console.log("Loading...");
                 setTimeout(()=>{
+                    if (!isPDF)
+                        loadImages();
                     window.print();
                     location.reload();
                 }

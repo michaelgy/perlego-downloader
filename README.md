@@ -12,6 +12,8 @@ College students that have used Perlego before know that downloading EBooks for 
 1. Enter `printPages(startPage, endPage)` into the console, where `startPage` is the page number you want to start printing on, and `endPage` is the page number of the page you want to end on. \
 *Optionally, use `printPages(startPage, endPage, pageTime)` if your internet is slow or images are not loading. `pageTime` referes to the time it takes to load a single page in milliseconds, a value between 100 and 30000 is recommended.*
 1. Wait for the script to finish running, and you should be prompted to save the pdf. 
+1. If images fail to load, try [printing again manually](https://support.google.com/chrome/answer/1069693). 
+1. Refresh the page to go back to Perlego's eReader. 
 
 If you want to download an entire textbook, it is recommended that you download the book in sections of around 150 pages to reduce the load on the browser. You could then combine the pdfs together using external tools such as `pdfunite`. 
 

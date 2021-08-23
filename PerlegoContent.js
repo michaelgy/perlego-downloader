@@ -54,10 +54,8 @@ function printPages(start, end, pageTime=100) {
 
                 console.log("Loading...");
                 setTimeout(()=>{
-                    if (!isPDF)
-                        loadImages();
+                    loadImages();
                     window.print();
-                    location.reload();
                 }
                 , (end - start) * pageTime);
             }

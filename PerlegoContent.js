@@ -15,7 +15,7 @@ function loadImages() {
     );
 }
 
-function printPages(start, end, pageTime=100) {
+function printPages(start, end) {
     document.querySelector("style").remove();
     const isPDF = document.querySelector(".pdf-content") != undefined;
     let printContents = "";
@@ -57,7 +57,7 @@ function printPages(start, end, pageTime=100) {
                     loadImages();
                     window.print();
                 }
-                , (end - start) * pageTime);
+                , (end - start) * 100);
             }
         }
         , 100);

@@ -16,6 +16,7 @@ function loadImages() {
 }
 
 function printPages(start, end) {
+    let dtime = 10000; //ms, used to allow the page to load completely (slow internet or to heavy page)
     document.querySelector("style").remove();
     const isPDF = document.querySelector(".pdf-content") != undefined;
     let printContents = "";
@@ -42,22 +43,26 @@ function printPages(start, end) {
             i++;
             if (i <= end) {
                 if (!isPDF)
-                    document.querySelector(`button[data-test-locator='ChevronButton-next-chapter']`).click();
+                    setTimeout(()=>{
+                        document.querySelector(`button[data-test-locator='ChevronButton-next-chapter']`).click();
+                    }, dtime);
                 downloadPage();
             }
             if (i == end + 1) {
-                if (isPDF) {
-                    document.body.innerHTML = printContents;
-                } else {
-                    document.body.innerHTML = "<div style='padding:40px;'>" + printContents + "</div>";
-                }
-
-                console.log("Loading...");
                 setTimeout(()=>{
-                    loadImages();
-                    window.print();
-                }
-                , (end - start) * 100);
+                    if (isPDF) {
+                        document.body.innerHTML = printContents;
+                    } else {
+                        document.body.innerHTML = "<div style='padding:40px;'>" + printContents + "</div>";
+                    }
+
+                    console.log("Loading...");
+                    setTimeout(()=>{
+                        loadImages();
+                        window.print();
+                    }
+                    , (end - start) * 100);
+                }, dtime);
             }
         }
         , 100);
